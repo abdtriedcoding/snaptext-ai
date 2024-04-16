@@ -1,3 +1,5 @@
+import ImageDropzone from "@/components/image-dropzone";
+
 export default function Home() {
   return (
     <>
@@ -7,6 +9,7 @@ export default function Home() {
       <h1 className="sm:text-6xl text-4xl max-w-[708px] font-bold text-slate-900">
         Extract your text from image using AI
       </h1>
+      <ImageDropzone />
     </>
   );
 }
