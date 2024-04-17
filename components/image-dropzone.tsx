@@ -22,7 +22,7 @@ export default function ImageDropzone() {
     const file = acceptedFile[0];
     const base64 = await toBase64(file);
     setBlobURL(URL.createObjectURL(file));
-    console.log(file);
+    complete(base64);
   };
 
   return (
