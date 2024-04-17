@@ -4,14 +4,21 @@ import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
 import { toBase64 } from "@/lib";
+import { useCompletion } from "ai/react";
 import DropzoneComponent from "react-dropzone";
 
 export default function ImageDropzone() {
-  const [loading, setLoading] = useState(false);
   const [blobURL, setBlobURL] = useState<string | null>(null);
 
+  const { complete, completion, isLoading } = useCompletion({
+    onError: (e) => {
+      console.log(e.message);
+      setBlobURL(null);
+    },
+  });
+
   const onDrop = async (acceptedFile: File[]) => {
-    if (!acceptedFile || loading) return;
+    if (!acceptedFile || isLoading) return;
     const file = acceptedFile[0];
     const base64 = await toBase64(file);
     setBlobURL(URL.createObjectURL(file));
@@ -19,7 +26,7 @@ export default function ImageDropzone() {
   };
 
   return (
-    <DropzoneComponent disabled={loading} onDrop={onDrop}>
+    <DropzoneComponent disabled={isLoading} onDrop={onDrop}>
       {({ getRootProps, getInputProps, isDragActive, isDragReject }) => {
         return (
           <>
@@ -30,7 +37,7 @@ export default function ImageDropzone() {
                 isDragActive
                   ? "bg-[#035ffe] text-white animate-pulse"
                   : "bg-slate-100/50 dark:bg-slate=800/80 text-slate-400",
-                loading && "cursor-not-allowed"
+                isLoading && "cursor-not-allowed"
               )}
             >
               <input {...getInputProps({ multiple: false })} />
