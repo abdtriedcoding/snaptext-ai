@@ -1,6 +1,6 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 h-full py-10">
+        <main className="flex flex-1 max-w-2xl mx-auto w-full flex-col items-center justify-center text-center px-4 py-10">
           {children}
         </main>
         <Footer />

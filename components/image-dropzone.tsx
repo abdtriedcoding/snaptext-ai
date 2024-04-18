@@ -26,14 +26,14 @@ export default function ImageDropzone() {
   };
 
   return (
-    <DropzoneComponent disabled={isLoading} onDrop={onDrop}>
-      {({ getRootProps, getInputProps, isDragActive, isDragReject }) => {
-        return (
-          <>
+    <>
+      <DropzoneComponent disabled={isLoading} onDrop={onDrop}>
+        {({ getRootProps, getInputProps, isDragActive, isDragReject }) => {
+          return (
             <div
               {...getRootProps()}
               className={clsx(
-                "max-w-[708px] h-[396px] object-cover relative group select-none grow w-full mt-10 flex justify-center items-center p-5 border border-dashed rounded-lg text-center cursor-pointer",
+                "h-[396px] object-cover relative group select-none grow w-full my-10 flex justify-center items-center p-5 border border-dashed rounded-lg text-center cursor-pointer",
                 isDragActive
                   ? "bg-[#035ffe] text-white animate-pulse"
                   : "bg-slate-100/50 dark:bg-slate=800/80 text-slate-400",
@@ -57,9 +57,14 @@ export default function ImageDropzone() {
                 </>
               )}
             </div>
-          </>
-        );
-      }}
-    </DropzoneComponent>
+          );
+        }}
+      </DropzoneComponent>
+      {(isLoading || completion) && (
+        <div className="space-y-3 basis-1/2 p-3 rounded-md bg-gray-100 w-full drop-shadow-sm">
+          {completion}
+        </div>
+      )}
+    </>
   );
 }
