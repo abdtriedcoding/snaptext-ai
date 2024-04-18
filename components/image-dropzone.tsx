@@ -2,6 +2,7 @@
 
 import clsx from "clsx";
 import Image from "next/image";
+import { toast } from "sonner";
 import { useState } from "react";
 import { toBase64 } from "@/lib";
 import { CopyIcon } from "lucide-react";
@@ -14,7 +15,7 @@ export default function ImageDropzone() {
 
   const { complete, completion, isLoading } = useCompletion({
     onError: (e) => {
-      console.log(e.message);
+      toast.error(e.message);
       setBlobURL(null);
     },
     onFinish: () => setFinished(true),
@@ -32,7 +33,7 @@ export default function ImageDropzone() {
 
   const copy = () => {
     navigator.clipboard.writeText([description, text].join("\n"));
-    console.log("Copied to clipboard");
+    toast.success("Copied to clipboard");
   };
 
   return (
@@ -103,7 +104,7 @@ function Section({
 }) {
   function copy() {
     navigator.clipboard.writeText(content || "");
-    console.log("Copied to clipboard");
+    toast.success("Copied to clipboard");
   }
 
   const loading = !content && !finished;

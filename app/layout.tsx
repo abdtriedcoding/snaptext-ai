@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Toaster } from "sonner";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "@/components/header";
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Header />
         <main className="flex flex-1 max-w-2xl mx-auto w-full flex-col items-center justify-center text-center px-4 py-10">
+          <Toaster />
           {children}
         </main>
         <Footer />
