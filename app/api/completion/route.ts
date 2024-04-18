@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { decodeBase64Image } from "@/lib";
 import { AnthropicStream, StreamingTextResponse } from "ai";
+import { decodeBase64Image, isSupportedImageType } from "@/lib";
 
 // Create an Anthropic API client (that's edge friendly)
 const anthropic = new Anthropic({
@@ -15,6 +15,16 @@ export async function POST(req: Request) {
   const { prompt } = await req.json();
 
   const { type, data } = decodeBase64Image(prompt);
+
+  if (!type || !data)
+    return new Response("Invalid image data", { status: 400 });
+
+  if (!isSupportedImageType(type)) {
+    return new Response(
+      "Unsupported format. Only JPEG, PNG, GIF, and WEBP files are supported.",
+      { status: 400 }
+    );
+  }
 
   // Ask Claude for a streaming chat completion given the prompt
   const response = await anthropic.messages.create({
