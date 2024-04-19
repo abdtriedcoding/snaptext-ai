@@ -51,7 +51,12 @@ export default function ImageDropzone() {
                 isLoading && "cursor-not-allowed"
               )}
             >
-              <input {...getInputProps({ multiple: false })} />
+              <input
+                {...getInputProps({
+                  multiple: false,
+                  accept: "image/jpeg, image/png, image/gif, image/webp",
+                })}
+              />
               {blobURL ? (
                 <Image
                   src={blobURL}

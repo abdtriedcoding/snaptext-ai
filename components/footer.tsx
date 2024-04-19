@@ -6,21 +6,21 @@ export default function Footer() {
       <div>
         Powered by{" "}
         <a
-          href="https://nextjs.org"
+          href="https://sdk.vercel.ai"
           target="_blank"
           rel="noreferrer"
           className="font-bold hover:underline transition underline-offset-2"
         >
-          Vercel{" "}
+          Vercel AI SDK{" "}
         </a>
         and{" "}
         <a
-          href="https://www.anthropic.com"
+          href="https://claude.ai"
           target="_blank"
           rel="noreferrer"
           className="font-bold hover:underline transition underline-offset-2"
         >
-          Anthropic
+          Claude
         </a>
       </div>
       <div className="flex space-x-4 pb-4 sm:pb-0">
