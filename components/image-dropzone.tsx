@@ -4,10 +4,10 @@ import clsx from "clsx";
 import Image from "next/image";
 import { toast } from "sonner";
 import { useState } from "react";
-import { toBase64 } from "@/lib";
 import { CopyIcon } from "lucide-react";
 import { useCompletion } from "ai/react";
 import DropzoneComponent from "react-dropzone";
+import { isSupportedImageType, toBase64 } from "@/lib";
 
 export default function ImageDropzone() {
   const [blobURL, setBlobURL] = useState<string | null>(null);
@@ -24,7 +24,22 @@ export default function ImageDropzone() {
   const onDrop = async (acceptedFile: File[]) => {
     if (!acceptedFile || isLoading) return;
     const file = acceptedFile[0];
+    if (!isSupportedImageType(file.type)) {
+      return toast.error(
+        "Unsupported format. Only JPEG, PNG, GIF, and WEBP files are supported."
+      );
+    }
+
+    if (file.size > 4.5 * 1024 * 1024) {
+      return toast.error("Image too large, maximum file size is 4.5MB.");
+    }
+
     const base64 = await toBase64(file);
+    // roughly 4.5MB in base64
+    if (base64.length > 6_464_471) {
+      return toast.error("Image too large, maximum file size is 4.5MB.");
+    }
+
     setBlobURL(URL.createObjectURL(file));
     setFinished(false);
     complete(base64);

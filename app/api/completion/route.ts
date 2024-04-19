@@ -14,6 +14,12 @@ export async function POST(req: Request) {
   // Extract the `prompt` from the body of the request
   const { prompt } = await req.json();
 
+  if (prompt.length > 6_464_471) {
+    return new Response("Image too large, maximum file size is 4.5MB.", {
+      status: 400,
+    });
+  }
+
   const { type, data } = decodeBase64Image(prompt);
 
   if (!type || !data)
