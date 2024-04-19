@@ -26,6 +26,7 @@ export default function ImageDropzone() {
     const file = acceptedFile[0];
     const base64 = await toBase64(file);
     setBlobURL(URL.createObjectURL(file));
+    setFinished(false);
     complete(base64);
   };
 
@@ -60,8 +61,10 @@ export default function ImageDropzone() {
               {blobURL ? (
                 <Image
                   src={blobURL}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{
+                    objectFit: "cover",
+                  }}
                   unoptimized
                   alt="Uploaded image"
                 />
