@@ -11,5 +11,6 @@ This project uses both [Vercel AI Sdk](https://sdk.vercel.ai) and [Claude](https
 ## Running Locally
 
 1. Clone the repository.
-2. Create an account at [Claude](https://console.anthropic.com/settings/keys) and add your API key under `ANTHROPIC_API_KEY` in your `.env`
-3. Run the application with `npm run dev` and it will be available at `http://localhost:3000`.
+2. Create an account at [console.anthropic.com](https://console.anthropic.com/settings/keys) and add your API key under `ANTHROPIC_API_KEY` in your `.env`.
+3. Run npm install to install dependencies.
+4. Run the application with `npm run dev` and it will be available at `http://localhost:3000`.
