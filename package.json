@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.20.5",
+    "@upstash/ratelimit": "^1.1.1",
+    "@upstash/redis": "^1.29.0",
     "ai": "^3.0.22",
     "clsx": "^2.1.0",
     "lucide-react": "^0.368.0",
