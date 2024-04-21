@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <Header />
-        <main className="flex flex-1 max-w-2xl mx-auto w-full flex-col items-center justify-center text-center px-4 py-10">
+        <main className="flex flex-1 max-w-2xl mx-auto w-full flex-col items-center justify-center text-center px-4 py-10 min-h-full">
           <Toaster richColors theme="system" />
           {children}
           <Analytics />
