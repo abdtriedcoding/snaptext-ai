@@ -2,7 +2,7 @@
 
 This project transform your images into editable text effortlessly.
 
-![Text from Image Generator](./public/thumbnail.png)
+![Text from Image Generator](https://files.edgestore.dev/j26azsoyqh7n72m2/myPublicImages/_public/b4a5b7c5-45d2-469f-b97f-5616f57ef8cc.png)
 
 ## How it works
 
